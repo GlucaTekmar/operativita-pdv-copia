@@ -651,48 +651,53 @@ def dipendenti():
                             file_name=r["file"]
                         )
 
-    # ===== CHECKBOX =====
-        oggi = datetime.now().strftime("%Y-%m-%d")
+    oggi = datetime.now().strftime("%Y-%m-%d")
 
-    gia_fatto_oggi = (
-        (log_df["pdv"] == scelta) &
-          (log_df["data"] == oggi)
-  ).any()
+gia_fatto_oggi = (
+    (log_df["pdv"] == scelta) &
+    (log_df["data"] == oggi)
+).any()
 
-    ok_uscita = gia_fatto_oggi
+ok_uscita = gia_fatto_oggi
 
-    if not gia_fatto_oggi:
+if "confermato_oggi" not in st.session_state:
+    st.session_state.confermato_oggi = gia_fatto_oggi
 
-        lettura = st.checkbox("Spunta di PRESA VISIONE")
-        presenza = st.checkbox("Spunta CONFERMA DI PRESENZA")
+# ===== CHECKBOX =====
+if not st.session_state.confermato_oggi:
 
-        if lettura and presenza:
+    lettura = st.checkbox("Spunta di PRESA VISIONE")
+    presenza = st.checkbox("Spunta CONFERMA DI PRESENZA")
 
-            new_row = pd.DataFrame(
-                [[oggi, scelta]],
-                columns=log_df.columns
-            )
+    if lettura and presenza:
+        st.session_state.confermato_oggi = True
 
-            updated_df = pd.concat([log_df, new_row], ignore_index=True)
-            save_csv(updated_df, LOG_FILE)
+        new_row = pd.DataFrame(
+            [[scelta, oggi]],
+            columns=log_df.columns
+        )
 
-            ok_uscita = True
-            st.success("Conferma registrata")
+        updated_df = pd.concat([log_df, new_row], ignore_index=True)
+        save_csv(updated_df, LOG_FILE)
 
-        else:
-          st.success("Presa visione già registrata per oggi")
+        ok_uscita = True
+        st.success("Conferma registrata")
 
-        c1, c2 = st.columns(2)
+else:
+    st.success("Presa visione già registrata per oggi")
 
-    with c1:
-        if st.button("TORNA ALLA LISTA PDV"):
-            if not ok_uscita:
-                st.error("Per uscire devi leggere e confermare i messaggi operativi")
+# ===== BOTTONI =====
+c1, c2 = st.columns(2)
+
+with c1:
+    if st.button("TORNA ALLA LISTA PDV"):
+        if not ok_uscita:
+            st.error("Per uscire devi leggere e confermare i messaggi operativi")
         else:
             st.rerun()
 
-    with c2:
-        st.link_button("HOME", HOME_URL)
+with c2:
+    st.link_button("HOME", HOME_URL)
 
 # =========================================================
 # ROUTER
@@ -701,6 +706,7 @@ if st.query_params.get("admin") == "1":
     admin()
 else:
     dipendenti()
+
 
 
 
