@@ -651,8 +651,7 @@ def dipendenti():
                             file_name=r["file"]
                         )
 
-    oggi = datetime.now().strftime("%Y-%m-%d")
-
+oggi = datetime.now().strftime("%Y-%m-%d")
 log_df = pd.read_csv(LOG_FILE)
 
 scelta = st.session_state.get("scelta")
@@ -709,6 +708,7 @@ if st.query_params.get("admin") == "1":
     admin()
 else:
     dipendenti()
+
 
 
 
