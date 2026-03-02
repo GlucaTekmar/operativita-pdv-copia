@@ -574,7 +574,7 @@ def dipendenti():
         st.warning("Archivio PDV vuoto")
         return
 
-    scelta = st.selectbox("", pdv_df["PDV"], index=None, placeholder="Digita la città...")
+    scelta = st.selectbox("", pdv_df["PDV"], key="scelta", index=None, placeholder="Digita la città...")
 
     st.markdown(
         "<p style='text-align:center;'><b>"
@@ -651,7 +651,7 @@ def dipendenti():
                             file_name=r["file"]
                         )
 
-    oggi = datetime.now().strftime("%Y-%m-%d")
+      oggi = datetime.now().strftime("%Y-%m-%d")
     log_df = pd.read_csv(LOG_FILE)
     
     scelta = st.session_state.get("scelta")
@@ -661,12 +661,9 @@ def dipendenti():
     ).any()
     
     ok_uscita = gia_fatto_oggi
-    
-    if "confermato_oggi" not in st.session_state:
-        st.session_state.confermato_oggi = gia_fatto_oggi
-    
-    # ===== CHECKBOX =====
-    if not st.session_state.confermato_oggi:
+
+        # ===== CHECKBOX =====
+        if not st.session_state.confermato_oggi:
     
         lettura = st.checkbox("Spunta di PRESA VISIONE")
         presenza = st.checkbox("Spunta CONFERMA DI PRESENZA")
@@ -699,7 +696,7 @@ def dipendenti():
                 st.rerun()
     
     with c2:
-        st.link_button("HOME", HOME_URL)
+        st.link_button("HOME", HOME_URL)        
 
 # =========================================================
 # ROUTER
@@ -708,6 +705,7 @@ if st.query_params.get("admin") == "1":
     admin()
 else:
     dipendenti()
+
 
 
 
