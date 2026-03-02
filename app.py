@@ -653,6 +653,8 @@ def dipendenti():
 
     oggi = datetime.now().strftime("%Y-%m-%d")
 
+log_df = pd.read_csv(LOG_FILE)
+
 gia_fatto_oggi = (
     (log_df["pdv"] == scelta) &
     (log_df["data"] == oggi)
@@ -706,6 +708,7 @@ if st.query_params.get("admin") == "1":
     admin()
 else:
     dipendenti()
+
 
 
 
