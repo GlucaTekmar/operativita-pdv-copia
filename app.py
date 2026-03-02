@@ -680,22 +680,22 @@ def dipendenti():
             st.success("Conferma registrata")
 
         else:
-            st.success("Presa visione già registrata per oggi")
+          st.success("Presa visione già registrata per oggi")
 
-              st.markdown('</div>', unsafe_allow_html=True)
-              st.markdown("---")
+            st.markdown('</div>', unsafe_allow_html=True)
+            st.markdown("---")
 
-          c1, c2 = st.columns(2)
+        c1, c2 = st.columns(2)
 
-      with c1:
-          if st.button("TORNA ALLA LISTA PDV"):
-              if not ok_uscita:
-                  st.error("Per uscire devi leggere e confermare i messaggi operativi")
+    with c1:
+        if st.button("TORNA ALLA LISTA PDV"):
+            if not ok_uscita:
+                st.error("Per uscire devi leggere e confermare i messaggi operativi")
         else:
             st.rerun()
 
-      with c2:
-          st.link_button("HOME", HOME_URL)
+    with c2:
+        st.link_button("HOME", HOME_URL)
 
 # =========================================================
 # ROUTER
@@ -704,6 +704,7 @@ if st.query_params.get("admin") == "1":
     admin()
 else:
     dipendenti()
+
 
 
 
