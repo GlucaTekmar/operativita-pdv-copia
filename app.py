@@ -651,55 +651,55 @@ def dipendenti():
                             file_name=r["file"]
                         )
 
-oggi = datetime.now().strftime("%Y-%m-%d")
-log_df = pd.read_csv(LOG_FILE)
-
-scelta = st.session_state.get("scelta")
-gia_fatto_oggi = (
-    (log_df["pdv"] == scelta) &
-    (log_df["data"] == oggi)
-).any()
-
-ok_uscita = gia_fatto_oggi
-
-if "confermato_oggi" not in st.session_state:
-    st.session_state.confermato_oggi = gia_fatto_oggi
-
-# ===== CHECKBOX =====
-if not st.session_state.confermato_oggi:
-
-    lettura = st.checkbox("Spunta di PRESA VISIONE")
-    presenza = st.checkbox("Spunta CONFERMA DI PRESENZA")
-
-    if lettura and presenza:
-        st.session_state.confermato_oggi = True
-
-        new_row = pd.DataFrame(
-            [[scelta, oggi]],
-            columns=log_df.columns
-        )
-
-        updated_df = pd.concat([log_df, new_row], ignore_index=True)
-        save_csv(updated_df, LOG_FILE)
-
-        ok_uscita = True
-        st.success("Conferma registrata")
-
-else:
-    st.success("Presa visione già registrata per oggi")
-
-# ===== BOTTONI =====
-c1, c2 = st.columns(2)
-
-with c1:
-    if st.button("TORNA ALLA LISTA PDV"):
-        if not ok_uscita:
-            st.error("Per uscire devi leggere e confermare i messaggi operativi")
-        else:
-            st.rerun()
-
-with c2:
-    st.link_button("HOME", HOME_URL)
+    oggi = datetime.now().strftime("%Y-%m-%d")
+    log_df = pd.read_csv(LOG_FILE)
+    
+    scelta = st.session_state.get("scelta")
+    gia_fatto_oggi = (
+        (log_df["pdv"] == scelta) &
+        (log_df["data"] == oggi)
+    ).any()
+    
+    ok_uscita = gia_fatto_oggi
+    
+    if "confermato_oggi" not in st.session_state:
+        st.session_state.confermato_oggi = gia_fatto_oggi
+    
+    # ===== CHECKBOX =====
+    if not st.session_state.confermato_oggi:
+    
+        lettura = st.checkbox("Spunta di PRESA VISIONE")
+        presenza = st.checkbox("Spunta CONFERMA DI PRESENZA")
+    
+        if lettura and presenza:
+            st.session_state.confermato_oggi = True
+    
+            new_row = pd.DataFrame(
+                [[scelta, oggi]],
+                columns=log_df.columns
+            )
+    
+            updated_df = pd.concat([log_df, new_row], ignore_index=True)
+            save_csv(updated_df, LOG_FILE)
+    
+            ok_uscita = True
+            st.success("Conferma registrata")
+    
+    else:
+        st.success("Presa visione già registrata per oggi")
+    
+    # ===== BOTTONI =====
+    c1, c2 = st.columns(2)
+    
+    with c1:
+        if st.button("TORNA ALLA LISTA PDV"):
+            if not ok_uscita:
+                st.error("Per uscire devi leggere e confermare i messaggi operativi")
+            else:
+                st.rerun()
+    
+    with c2:
+        st.link_button("HOME", HOME_URL)
 
 # =========================================================
 # ROUTER
