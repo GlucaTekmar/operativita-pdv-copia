@@ -651,38 +651,38 @@ def dipendenti():
                             file_name=r["file"]
                         )
 
-        # ===== CHECKBOX =====
-        lettura = st.checkbox(
-            "Spunta di PRESA VISIONE",
-            key=f"l_{pdv_id}_{i}"
-        )
+    # ===== CHECKBOX =====
+    lettura = st.checkbox(
+        "Spunta di PRESA VISIONE",
+        key=f"l_{pdv_id}_{i}"
+    )
 
-        presenza = st.checkbox(
-            "Spunta CONFERMA DI PRESENZA",
-            key=f"p_{pdv_id}_{i}"
-        )
+    presenza = st.checkbox(
+        "Spunta CONFERMA DI PRESENZA",
+        key=f"p_{pdv_id}_{i}"
+    )
 
-        if lettura and presenza:
+    if lettura and presenza:
 
-            gia_registrato = (
-                (log_df["pdv"] == scelta) &
-                (log_df["msg"] == r["msg"])
-            ).any()
+        gia_registrato = (
+            (log_df["pdv"] == scelta) &
+            (log_df["msg"] == r["msg"])
+        ).any()
 
-            if not gia_registrato:
+        if not gia_registrato:
 
-                new_row = pd.DataFrame(
-                    [[now_str(), scelta, r["msg"]]],
-                    columns=log_df.columns
-                )
+            new_row = pd.DataFrame(
+                [[now_str(), scelta, r["msg"]]],
+                columns=log_df.columns
+            )
 
-                updated_df = pd.concat(
-                    [log_df, new_row],
-                    ignore_index=True
-                )
+            updated_df = pd.concat(
+                [log_df, new_row],
+                ignore_index=True
+            )
 
-                save_csv(updated_df, LOG_FILE)
-                st.success("Registrato")
+              save_csv(updated_df, LOG_FILE)
+              st.success("Registrato")
 
         st.markdown('</div>', unsafe_allow_html=True)
         st.markdown("---")
@@ -695,6 +695,7 @@ if st.query_params.get("admin") == "1":
     admin()
 else:
     dipendenti()
+
 
 
 
