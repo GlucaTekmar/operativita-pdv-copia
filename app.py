@@ -681,8 +681,8 @@ def dipendenti():
                 ignore_index=True
             )
 
-              save_csv(updated_df, LOG_FILE)
-              st.success("Registrato")
+            save_csv(updated_df, LOG_FILE)
+            st.success("Registrato")
 
         st.markdown('</div>', unsafe_allow_html=True)
         st.markdown("---")
@@ -695,6 +695,7 @@ if st.query_params.get("admin") == "1":
     admin()
 else:
     dipendenti()
+
 
 
 
