@@ -627,6 +627,7 @@ def dipendenti():
                 padding: 25px;
                 border-radius: 12px;
                 margin-bottom: 20px;
+                color: black;
             ">
                 <div style="display:flex; justify-content:space-between; align-items:center;">
                     <img src="logo.png" width="120">
@@ -706,6 +707,7 @@ if st.query_params.get("admin") == "1":
     admin()
 else:
     dipendenti()
+
 
 
 
