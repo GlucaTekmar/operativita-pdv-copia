@@ -644,13 +644,11 @@ def dipendenti():
                     MESSAGGIO OPERATIVO
                 </div>
                 
-                <div style="font-size:16px; line-height:1.6; margin-top:5px;">
-                    {r["msg"]}
-                </div>
             </div>
             """,
             unsafe_allow_html=True
         )
+            st.markdown(r["msg"], unsafe_allow:html=True)
 
         # ===== ALLEGATO =====
         if r["file"]:
@@ -715,6 +713,7 @@ if st.query_params.get("admin") == "1":
     admin()
 else:
     dipendenti()
+
 
 
 
