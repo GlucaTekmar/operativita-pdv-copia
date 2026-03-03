@@ -630,12 +630,17 @@ def dipendenti():
                 color: black;
             ">
                 <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <img src="logo.png" width="120">
+                    <img src="https://raw.githubusercontent.com/GlucaTekmar/operativita-pdv/main/logo.png" width="120" style="object-fit:contain;">
                     <div style="font-size:14px; color:#555;">
                         {now_str().split(" ")[0]}
                     </div>
                 </div>
-                <hr style="margin:15px 0;">
+                <hr style="margin:15px 0; border:none; border-top:2px solid #e5e5e5;">
+
+                <div style="font-size:22px; font-weight:700; margin-bottom:10px;">
+                    MESSAGGIO OPERATIVO
+                </div>
+                
                 <div>
                     {r["msg"]}
                 </div>
@@ -707,6 +712,7 @@ if st.query_params.get("admin") == "1":
     admin()
 else:
     dipendenti()
+
 
 
 
