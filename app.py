@@ -525,7 +525,7 @@ def admin():
 def dipendenti():
     st.markdown("""
     <style>
-    .stApp {background:#fff5f5;}
+    [data-testid="stAppViewContainer"] {background-color: #ffe5e5;}
     label, h1, h2, h3 {color:black;}
     </style>
     """, unsafe_allow_html=True)
@@ -717,6 +717,7 @@ if st.query_params.get("admin") == "1":
     admin()
 else:
     dipendenti()
+
 
 
 
