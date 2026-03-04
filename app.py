@@ -628,8 +628,8 @@ def dipendenti():
     for i, r in enumerate(mostrati):
 
         # 🖼️ RENDER IMMAGINE
-        st.markdown(f"""
-            <div lang="it" translate="no" style="
+                st.markdown(f"""
+                <div lang="it" translate="no" style="
                 background-color: white;
                 padding: 25px;
                 border-radius: 12px;
@@ -724,6 +724,7 @@ if st.query_params.get("admin") == "1":
     admin()
 else:
     dipendenti()
+
 
 
 
