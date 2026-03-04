@@ -628,8 +628,7 @@ def dipendenti():
     for i, r in enumerate(mostrati):
 
         # 🖼️ RENDER IMMAGINE
-        st.markdown(
-            f"""
+        st.markdown(f"""
             <div lang="it" translate="no" style="
                 background-color: white;
                 padding: 25px;
@@ -639,21 +638,28 @@ def dipendenti():
                 box-shadow: 0 6px 18px rgba(0,0,0,0.18);
                 border-top: 6px solid #d50000;
                 border: 2px solid #e5e5e5;
-            ">
-                <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <img src="https://raw.githubusercontent.com/GlucaTekmar/operativita-pdv/main/logo.png" width="120" style="object-fit:contain;">
-                    <div style="font-size:14px; color:#555;">
-                        {now_str().split(" ")[0]}
-                    </div>
-                </div>
-                <hr style="margin:15px 0; border:none; border-top:2px solid #e5e5e5;">
+                ">
 
-                <div style="font-size:22px; font-weight:700; margin-bottom:10px;">
-                {r["msg"]}
-                </div>
+               <div style="display:flex;justify-content:space-between;alig-items:center;">
+               <img src="URL_LOGO" width="130">
+               <div style=font-size:14px;
+               color:#555;">
+               {now_str().split(" ")[0]}
+               </div>
+               </div>
+
+               <hr style="margin:15px 0; border:none; border-top:2px solid #e5e5e5;">
                 
+                <div style="font-size:22px; 
+                font-weight:700; margin-bottom:10px;">
+                MESSAGGIO OPERATIVO
                 </div>
+
                 """, unsafe_allow_html=True)
+
+                st.markdown(r["msg"],unsafe_allow_html=True)
+
+                st.markdown("<"/div>",unsafe_allow_html=True)
 
         # ===== ALLEGATO =====
         if r["file"]:
@@ -718,6 +724,7 @@ if st.query_params.get("admin") == "1":
     admin()
 else:
     dipendenti()
+
 
 
 
