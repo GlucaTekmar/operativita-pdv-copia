@@ -662,10 +662,9 @@ def dipendenti():
                 st.markdown("</div>", unsafe_allow_html=True)
 
         # ===== ALLEGATO =====
-    if r["file"]:
-            path = os.path.join(UPLOAD_DIR, r["file"])
-
-                if os.path.exists(path):
+if r["file"]:
+    path = os.path.join(UPLOAD_DIR, r["file"])
+    if os.path.exists(path):
 
                 # Immagine extra
                 if not r["file"].lower().endswith(".pdf"):
@@ -724,6 +723,7 @@ if st.query_params.get("admin") == "1":
     admin()
 else:
     dipendenti()
+
 
 
 
