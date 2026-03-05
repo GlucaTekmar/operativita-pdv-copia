@@ -525,8 +525,8 @@ def admin():
 def dipendenti():
     st.markdown("""
     <style>
-    [data-testid="stAppViewContainer"] {background-color: #c40000;}
-    label, h1, h2, h3 {color:white;}
+    [data-testid="stAppViewContainer"] {background-color: #ffe5e5;}
+    label, h1, h2, h3 {color:black;}
     </style>
     """, unsafe_allow_html=True)
 
@@ -539,8 +539,6 @@ def dipendenti():
     border-radius:12px;
     box-sizing:border-box;
     overflow-wrap:anywhere;
-    line-height:1.5;
-    font-size:16px;
 }
 
     .msgbox p,
@@ -613,24 +611,11 @@ def dipendenti():
 
     # ===== MESSAGGIO GENERICO =====
     if not mostrati:
-        st.markdown(f"""
+        st.markdown("""
         <div class='msgbox' style='text-align:center;font-weight:800;font-size:18px;'>
-
-        <div
-        style="display:flex;justify-content:space-between;align-items:center;">
-        <img
-        src="htpps://raw.githubusercontent.com/GlucaTekmar/operativita-pdv/main/logo.png" width="130">
-        <div style=font-size:14px;color:#666;">
-        {now_str().split(" ")[0]}
-        <div style="height:10px"></div>
-        </div>
-        </div>
-        
         QUESTA MATTINA NON SONO PREVISTE PROMO-ATTIVITA' PARTICOLARI. BUON LAVORO
         </div>
         """, unsafe_allow_html=True)
-
-        st.markdown("<br>", unsafe_allow_html=True)
 
         if st.checkbox("Spunta CONFERMA DI PRESENZA"):
             new = pd.DataFrame([[now_str(), scelta, "PRESENZA"]], columns=log_df.columns)
@@ -648,21 +633,22 @@ def dipendenti():
                 background-color: white;
                 padding: 25px;
                 border-radius: 16px;
-                margin-bottom: 60px;
+                margin-bottom: 40px;
                 color: black;
                 box-shadow: 0 6px 28px rgba(0,0,0,0.18);
                 border-top: 6px solid #e60000;
                 border: 2px solid #e5e5e5;
                 ">
 
-               <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;">
+               <div style="display:flex;justify-content:space-between;alig-items:center;">
                <img src="https://raw.githubusercontent.com/GlucaTekmar/operativita-pdv/main/logo.png" width="130">
                <div style=font-size:14px;
                color:#555;">
                {now_str().split(" ")[0]}
                </div>
+               </div>
 
-               <hr style="margin:20px 0; border:none; border-top:3px solid #e60000;">
+               <hr style="margin:15px 0; border:none; border-top:3px solid #dddddd;">
 
                 {r["msg"]}
 
@@ -731,13 +717,6 @@ if st.query_params.get("admin") == "1":
     admin()
 else:
     dipendenti()
-
-
-
-
-
-
-
 
 
 
