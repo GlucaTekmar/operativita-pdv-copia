@@ -58,15 +58,15 @@ h1, h2, h3 { font-weight: 800; }
 # =========================================================
 # 🔒 STORAGE PERSISTENTE RENDER — MOUNT: /var/dati
 # =========================================================
-DATA_DIR = "/var/dati"
-UPLOAD_DIR = "/var/dati/uploads"
+DATA_DIR = "media"
+UPLOAD_DIR = "media"
 
 if not os.path.exists(UPLOAD_DIR):
     os.makedirs(UPLOAD_DIR)
 
-LOG_FILE = "/var/dati/log.csv"
-MSG_FILE = "/var/dati/messaggi.csv"
-PDV_FILE = "/var/dati/pdv.csv"
+LOG_FILE = "log.csv"
+MSG_FILE = "messaggi.csv"
+PDV_FILE = "pdv.csv"
 
 HOME_URL = "https://eu.jotform.com/it/app/build/253605296903360"
 
@@ -717,6 +717,7 @@ if st.query_params.get("admin") == "1":
     admin()
 else:
     dipendenti()
+
 
 
 
