@@ -76,7 +76,7 @@ HOME_URL = "https://eu.jotform.com/it/app/build/253605296903360"
 # =========================================================
 CSS_ADMIN = """
 <style>
-.stApp { background-color: #E6E6E6 !important; }
+.stApp { background-color: #FF0000 !important; }
 .block-container { padding-top: 1.5rem !important; padding-bottom: 2rem !important; }
 hr { border: 1px solid #000 !important; }
 input, textarea, select {
@@ -717,6 +717,7 @@ if st.query_params.get("admin") == "1":
     admin()
 else:
     dipendenti()
+
 
 
 
