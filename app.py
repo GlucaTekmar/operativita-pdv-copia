@@ -76,7 +76,7 @@ HOME_URL = "https://eu.jotform.com/it/app/build/253605296903360"
 # =========================================================
 CSS_ADMIN = """
 <style>
-.stApp { background-color: #FF0000 !important; }
+.stApp { background-color: #ffffff !important; }
 .block-container { padding-top: 1.5rem !important; padding-bottom: 2rem !important; }
 hr { border: 1px solid #000 !important; }
 input, textarea, select {
@@ -525,8 +525,8 @@ def admin():
 def dipendenti():
     st.markdown("""
     <style>
-    [data-testid="stAppViewContainer"] {background-color: #ffe5e5;}
-    label, h1, h2, h3 {color:black;}
+    [data-testid="stAppViewContainer"] {background-color: #FF0000;}
+    label, h1, h2, h3 {color:white;}
     </style>
     """, unsafe_allow_html=True)
 
@@ -717,6 +717,7 @@ if st.query_params.get("admin") == "1":
     admin()
 else:
     dipendenti()
+
 
 
 
